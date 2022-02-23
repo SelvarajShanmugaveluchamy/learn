@@ -20,9 +20,9 @@ stages:
       - job: B
         steps:
           - bash: echo "Hi , I am from Build Stage - Job B"
-          - bash: echo $(Build.Number)
+          - bash: echo $(Build.BuildNumber)
           - bash: echo $(Build.SourceBranchName)
-          - bash: echo $(Build.DefaultWorkingDirectory)
+          - bash: echo $(Build.SourcesDirectory)
           - bash: echo $(System.DefaultWorkingDirectory)
   - stage: DevDeploy
     variables:

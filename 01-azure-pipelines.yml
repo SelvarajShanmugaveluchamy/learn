@@ -9,11 +9,24 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-jobs:
-  - job: A
-    steps:
-      - bash: echo "Hi, I am Job A"
-  - job: B
-    dependsOn: A
-    steps:
-      - bash: echo "Hi, I am job B"
+stages:
+  - stage: Build
+    jobs:
+      - job: A
+        steps:
+          - bash: echo "Hi , I am from Build Stage - Job A"
+          - bash: echo "Job A Second Line"
+        displayName: Job A
+      - job: B
+        steps:
+          - bash: echo "Hi , I am from Build Stage - Job B"
+  - stage: DevDeploy
+    dependsOn: Build
+    jobs:
+      - job: A
+        steps:
+          - bash: echo "Hi , I am from DevDeploy Stage - Job A"
+      - job: B
+        dependsOn: A
+        steps:
+          - bash: echo "Hi , I am from DevDeploy Stage - Job B"

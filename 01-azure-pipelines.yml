@@ -15,7 +15,7 @@ stages:
       - job: A
         steps:
           - bash: echo "Hi , I am from Build Stage - Job A"
-          - bash: echo "Job A Second Line"
+          - bash: echo "Engineer Name " $(ENGINEER_NAME)
         displayName: Job A
       - job: B
         steps:
